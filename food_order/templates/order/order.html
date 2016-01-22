@@ -1,0 +1,12 @@
+<h1>{{ user.username }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'user' user.id %}" method="post">
+{% csrf_token %}
+{% for food in food_list %}
+    <input type="radio" name="food" id="food{{ forloop.counter }}" value="{{ food.id }}" />
+    <label for="food{{ forloop.counter }}">{{ food.name }}</label><br />
+{% endfor %}
+<input type="submit" value="Vote" />
+</form>
